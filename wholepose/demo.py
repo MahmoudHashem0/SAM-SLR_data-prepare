@@ -61,7 +61,7 @@ def merge_hm(hms_list):
     # print(hm.size(0))
     hm = torch.mean(hms, dim=0)
     return hm
-def main(input_path):
+def main(input_path, output_folder):
 
     with torch.no_grad():
         config = 'wholebody_w48_384x288.yaml'
@@ -119,9 +119,9 @@ def main(input_path):
         for i, path in enumerate(paths):
             # if i > 1:
             #     break
-            if not os.path.exists("npy3"):
-                os.makedirs("npy3")
-            output_npy = 'npy3/{}.npy'.format(names[i])
+            if not os.path.exists(output_folder):
+                os.makedirs(output_folder)
+            output_npy = f"{output_folder}/{names[i]}.npy"
 
             if os.path.exists(output_npy):
                 continue
@@ -208,7 +208,13 @@ def main(input_path):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    
     parser.add_argument("--input_path", type=str)
+    parser.add_argument("--output_folder", type=str)
+    
     args = parser.parse_args()
+    
     input_path = args.input_path
-    main(input_path)
+    output_folder = args.output_folder
+    
+    main(input_path, output_folder)
