@@ -122,6 +122,7 @@ def main(input_path, output_folder):
             if not os.path.exists(output_folder):
                 os.makedirs(output_folder)
             output_npy = f"{output_folder}/{names[i]}.npy"
+            print(f"output_npy: {output_npy}")
 
             if os.path.exists(output_npy):
                 continue
