@@ -1,6 +1,19 @@
 import cv2
 import numpy as np
 import os
+import argparse
+
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument("--input_path", type=str)
+parser.add_argument("--npy_folder", type=str)
+parser.add_argument("--output_folder", type=str)
+
+args = parser.parse_args()
+
+    
+
 
 def crop(image, center, radius, size=512):
     scale = 1.3
@@ -24,9 +37,14 @@ def crop(image, center, radius, size=512):
 
 selected_joints = np.concatenate(([0,1,2,3,4,5,6,7,8,9,10], 
                     [91,95,96,99,100,103,104,107,108,111],[112,116,117,120,121,124,125,128,129,132]), axis=0) 
-folder = 'val' # 'train', 'test'
-npy_folder = 'val_npy/npy3' # 'train_npy/npy3', 'test_npy/npy3'
-out_folder = 'val_frames' # 'train_frames' 'test_frames'
+
+# folder = 'val' # 'train', 'test'
+# npy_folder = 'val_npy/npy3' # 'train_npy/npy3', 'test_npy/npy3'
+# out_folder = 'val_frames' # 'train_frames' 'test_frames'
+
+folder = args.input_path
+npy_folder = args.npy_folder
+out_folder = args.output_folder
 
 
 
