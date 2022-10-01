@@ -107,14 +107,14 @@ def main(input_path, output_folder):
         print(len(paths))
         # paths = paths[:4]
         # names = names[:4]
-        step = 600
-        start_step = 6
+        # step = 600
+        # start_step = 6
         # paths = paths[start_step*step:(start_step+1)*step]
         # names = names[start_step*step:(start_step+1)*step]
-        paths = paths[4200:]
-        names = names[4200:]
-        paths = paths[::-1]
-        names = names[::-1]
+        #paths = paths[4200:]
+        #names = names[4200:]
+        #paths = paths[::-1]
+        #names = names[::-1]
 
         for i, path in enumerate(paths):
             # if i > 1:
@@ -122,7 +122,7 @@ def main(input_path, output_folder):
             if not os.path.exists(output_folder):
                 os.makedirs(output_folder)
             output_npy = f"{output_folder}/{names[i]}.npy"
-            print(f"output_npy: {output_npy}")
+            # print(f"output_npy: {output_npy}")
 
             if os.path.exists(output_npy):
                 continue
