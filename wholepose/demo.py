@@ -61,7 +61,7 @@ def merge_hm(hms_list):
     # print(hm.size(0))
     hm = torch.mean(hms, dim=0)
     return hm
-def main():
+def main(input_path):
 
     with torch.no_grad():
         config = 'wholebody_w48_384x288.yaml'
@@ -94,7 +94,7 @@ def main():
             transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
         ])
 
-        input_path = '/home/ubuntu/workspace/data/sign/val'
+#         input_path = '/home/ubuntu/workspace/data/sign/val'
         paths = []
         names = []
         for root, _, fnames in natsorted(os.walk(input_path)):
@@ -119,6 +119,8 @@ def main():
         for i, path in enumerate(paths):
             # if i > 1:
             #     break
+            if not os.path.exists("npy3"):
+                os.makedirs("npy3")
             output_npy = 'npy3/{}.npy'.format(names[i])
 
             if os.path.exists(output_npy):
@@ -205,4 +207,8 @@ def main():
             # break
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input_path", type=str)
+    args = parser.parse_args()
+    input_path = args.input_path
+    main(input_path)
